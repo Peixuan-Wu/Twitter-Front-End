@@ -1,32 +1,35 @@
-import { useState } from 'react';
-import './index.css'
 
+import './index.css'
+import { Button, Input, Form, PasscodeInput, NumberKeyboard, Dialog } from 'antd-mobile';
+
+const initialValues = {
+    username: "Amy",
+    pwd:"1234"
+}
 const Login = () => {
-    const [name, setName] = useState('');
-    const [pw, setPw] = useState('');
-    console.log(name);
-    console.log(pw);
-    const clickHandler = () => {
-        alert("Login Successfully  " + name + ", " + pw);
+    const [form] = Form.useForm();
+    const onSubmit = () => {
+        const values = form.getFieldsValue();
+        Dialog.alert({
+            content: JSON.stringify(values)
+        })
     }
-    const onChangeNameHandler = (e) => {
-        // console.log(e);
-        setName(e.target.value);
-    }
-    const onChangepwHandler = (e) => {
-        setPw(e.target.value);
-    }
+   
     return (
-        <div>
             <div  className='login'>
-                {name} 
-                {pw}
-                <div>UserName: <input onChange={onChangeNameHandler}/></div>
-                <div>PassWord: <input type="password" onChange={onChangepwHandler}></input></div>
-                <div><button onClick={clickHandler}>Login</button></div>
+            <Form form={form}  layout='horizontal' mode='card' initialValues={initialValues} footer={
+             <Button block color='primary' onClick={onSubmit} size="large">
+                Login
+             </Button>}>  
+            <Form.Item label='UserName' name="username">
+            <Input placeholder='Amy' />
+            </Form.Item>
+            <Form.Item label='Password' name="pwd">
+            <Input placeholder='password' clearable type='password' /> 
+            </Form.Item>
+            </Form>
             </div>
-        </div>
     )
 }
 
-export default Login;
+export default Login; 
