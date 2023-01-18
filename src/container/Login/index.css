@@ -1,14 +1,14 @@
 .login {
-    font-size: 100px;
     text-align: center;
+    background-color: #fafbfc;
 }
 
 body {
-    font-size: 100px
+    text-align: center;
+    margin: 100px auto;
 }
 
 button {
+    text-align: center;
     font-size: 100px;
-    height:200px;
-    width:300px;
 }
