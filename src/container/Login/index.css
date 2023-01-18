@@ -1,14 +1,11 @@
 .login {
-    font-size: 100px;
-    text-align: center;
+    text-align: center auto;
 }
 
 body {
-    font-size: 100px
+    text-align: center auto;
 }
 
 button {
     font-size: 100px;
-    height:200px;
-    width:300px;
 }
