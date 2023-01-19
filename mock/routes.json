@@ -1,0 +1,3 @@
+{
+    "/api/login/:username/:password": "/user?username=:username&password=:password"
+}

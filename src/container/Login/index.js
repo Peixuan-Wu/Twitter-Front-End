@@ -1,17 +1,29 @@
 
 import './index.css'
 import { Button, Input, Form, PasscodeInput, NumberKeyboard, Dialog } from 'antd-mobile';
+import { loginServices } from '../../services/login';
+
 
 const initialValues = {
     username: "Amy",
-    pwd:"1234"
+    password:"1234"
 }
 const Login = () => {
+
     const [form] = Form.useForm();
-    const onSubmit = () => {
+
+    const onSubmit = async () => {
         const values = form.getFieldsValue();
+        const res = await loginServices(values.username, values.password);
+        console.log(res);
+        if (res) {
+            Dialog.alert({
+                content: "Login Successfully"
+            })
+            return;
+        }
         Dialog.alert({
-            content: JSON.stringify(values)
+            content: "Login Failed"
         })
     }
    
@@ -24,7 +36,7 @@ const Login = () => {
             <Form.Item label='UserName' name="username">
             <Input placeholder='Amy' />
             </Form.Item>
-            <Form.Item label='Password' name="pwd">
+            <Form.Item label='Password' name="password">
             <Input placeholder='password' clearable type='password' /> 
             </Form.Item>
             </Form>
